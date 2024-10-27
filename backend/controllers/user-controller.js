@@ -62,6 +62,42 @@ export const loginUser=asyncHandler(async(req,res)=>{
     }
 })
 
+export const updateUserProfile=asyncHandler(
+    async (req, res) => {
+        const { name, email, password, newPassword } = req.body;
+      
+        try {
+          // Find the user by ID
+          const user = await User.findById(req.params.userId);
+          
+          if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+          }
+      
+          // Check if the provided current password is correct
+          const isPasswordValid = await bcrypt.compare(password, user.password);
+          if (!isPasswordValid) {
+            return res.status(400).json({ error: 'Current password is incorrect' });
+          }
+      
+          // If new password is provided, hash it
+          let updatedFields = { name, email };
+          if (newPassword) {
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(newPassword, salt);
+            updatedFields.password = hashedPassword;
+          }
+      
+          // Update user profile
+          const updatedUser = await User.findByIdAndUpdate(req.params.userId, updatedFields, { new: true });
+      
+          res.json(updatedUser);
+        } catch (error) {
+          res.status(500).json({ error: 'Server error' });
+        }
+      }
+)
+
 
 const generateToken=(id)=>{
     return jwt.sign({id},process.env.JWT_SECRET,{

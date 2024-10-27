@@ -3,7 +3,7 @@ import mongoose from "mongoose"
 
 dotenv.config()
 
-console.log('url',process.env.MONGO_URL);
+// console.log('url',process.env.MONGO_URL);
 
 const connectDB=async()=>{
     try {

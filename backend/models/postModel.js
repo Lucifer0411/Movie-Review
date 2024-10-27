@@ -9,7 +9,9 @@ const PostSchema = new mongoose.Schema({
     required: true
   },
   image: {
-    type: String, // URL to an image (optional)
+    // type: String, // URL to an image (optional)
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'Image',
     default: null
   },
   createdBy: {
