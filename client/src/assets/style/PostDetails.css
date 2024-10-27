@@ -1,0 +1,24 @@
+/* src/components/PostDetails.css */
+
+.reviews {
+  margin-top: 2rem;
+}
+
+.review {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.add-review {
+  margin-top: 2rem;
+}
+
+.add-review .form-group {
+  margin-bottom: 1rem;
+}
+
+.error {
+  color: red;
+}
