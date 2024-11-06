@@ -1,43 +1,4 @@
-/* src/components/Login.css
-
-.App div{
-    padding:20px;
-}
-input {
-    padding: 10px;
-    margin: 5px 0;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:disabled {
-    background-color: #ccc;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  p.error-message {
-    color: red;
-    font-size: 0.9rem;
-  }
-  
-  p.success-message {
-    color: green;
-    font-size: 0.9rem;
-  }
-   */
+/* src/components/Login.css */
 
 .login-section{
   height: 100vh;
@@ -47,12 +8,10 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
-
 .login-container{
   width: 55%;
-  height: 70vh;
+  /* height: 70vh; */
   border-radius: 20px;
   border: 2px solid white;
   background-image: linear-gradient(rgba(239, 221, 221, 0.1), rgba(224, 202, 202, 0.1));
@@ -61,22 +20,24 @@ input {
   justify-content: flex-start;
   /* align-items: center; */
   text-align: center;
+  padding:20px
 }
 .login-container h2{
-  margin-top: 50px;
+  margin-top: 35px;
 }
 .input-div{
   text-align: left;
   /* background-color: blue; */
-  padding:20px;
+  padding:15px;
   width:80%;
   margin:20px auto;
   border-radius: 15px;
   background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
   border: 0.5px solid black;
   color:black;
-  
-
+}
+.input-div label {
+  font-size: 1rem;
 }
 input{
   width:100%;
@@ -91,5 +52,48 @@ input{
   font-size: 1rem;
   padding: 5px;
   margin-top: 10px;
+}
 
+@media (max-width:768px) {
+  .login-container{
+    width: 75%;
+  }
+  .login-container h2{
+    margin-top: 20px;
+  }
+  .input-div{
+    padding:10px;
+  }
+  input{
+    height: 20px;
+  }
+}
+
+@media (max-width:480px) {
+  .login-container{
+    width: 85%;
+  }
+  .input-div{
+    padding:6px;
+    border-radius: 8px;
+    margin:12px auto;
+  }
+  input{
+    height: 15px;
+  }
+  
+}
+@media (max-width:320px) {
+  .login-container{
+    width: 100%;
+    border-radius: 8px;
+  }
+  .login-container h2{
+    margin-top: 25px;
+    font-size:1.2rem;
+  }
+  .input-div label {
+    font-size: 0.7rem;
+}
+  
 }

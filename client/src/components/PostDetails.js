@@ -1,6 +1,6 @@
 // src/components/PostDetails.js
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 // import { useSelector } from 'react-redux';
@@ -19,19 +19,18 @@ const PostDetails = () => {
 const user = JSON.parse(storedString);
 const token=user.token;
 
-const submitReview = async (e) => {
+
+const submitReview =useCallback(async (e) => {
   e.preventDefault();
   if (rating <= 0 || content.trim() === '') {
     setError('Please provide a valid rating and content');
-    return;
+    // return;
   }
-
   const config = {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,// Pass JWT token in the request header
       // Pass the token for authorization
-
     },
   };
 
@@ -51,38 +50,32 @@ const submitReview = async (e) => {
     console.error('Error submitting review', err);
     setError('Failed to submit review');
   }
-};
+},[content,id,post,rating,token])
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const res = await axios.get(`http://localhost:8000/api/posts/${id}`);
-        setPost(res.data);
-      } catch (err) {
-        console.error('Error fetching post details', err);
-      }
-    };
-    fetchPost();
-    const fetchReviews = async () => {
-      try {
-        const res = await axios.get(`http://localhost:8000/api/reviews/${id}/reviews`);
-        setReviews(res.data);
-      } catch (err) {
-        console.error('Error fetching review details', err);
-      }
-    };
-    fetchReviews();
-    // const fetchUser = async () => {
-    //   try {
-    //     const res = await axios.get(`http://localhost:8000/api/reviews/${id}/reviews`);
-    //     setReviews(res.data);
-    //   } catch (err) {
-    //     console.error('Error fetching review details', err);
-    //   }
-    // };
-    // fetchUser();
-  }, [id,submitReview]);
 
+useEffect(() => {
+  const fetchPost = async () => {
+    try {
+      const res = await axios.get(`http://localhost:8000/api/posts/${id}`);
+      setPost(res.data);
+    } catch (err) {
+      console.error('Error fetching post details', err);
+    }
+  };
+  fetchPost();
+  const fetchReviews = async () => {
+    try {
+      const res = await axios.get(`http://localhost:8000/api/reviews/${id}/reviews`);
+      setReviews(res.data);
+      return;
+    } catch (err) {
+      console.log('error',err);
+      
+    }
+  };
+  fetchReviews();
+  
+}, [id,submitReview]);
 
 
   return post ? (

@@ -39,12 +39,10 @@ const Dashboard = () => {
       </section>
 
       {/* Section for editing the user's profile */}
-      <section>
+      {/* <section>
         <button onClick={handleClick}>Edit Profile</button>
-        {/* <EditProfile /> */}
-      {/* Conditionally render the NewComponent */}
       {showEditComponent && <EditProfile/>}
-      </section>
+      </section> */}
 
     </div>
   );

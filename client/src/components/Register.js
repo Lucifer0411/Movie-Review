@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../store/authSlice';
 import { useNavigate } from 'react-router-dom';
+import '../assets/style/Login.css'
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -42,8 +43,11 @@ const Register = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <div className='login-section'>
+     <div className='login-container'>
+     <h2>USER REGISTER</h2>
+     <form onSubmit={handleSubmit}>
+      <div className='input-div'>
         <label htmlFor="name">Name</label>
         <input
           id="name"
@@ -55,7 +59,7 @@ const Register = () => {
         />
       </div>
       
-      <div>
+      <div className='input-div'>
         <label htmlFor="email">Email</label>
         <input
           id="email"
@@ -67,7 +71,7 @@ const Register = () => {
         />
       </div>
       
-      <div>
+      <div className='input-div'>
         <label htmlFor="password">Password</label>
         <input
           id="password"
@@ -79,7 +83,7 @@ const Register = () => {
         />
       </div>
       
-      <div>
+      <div className='input-div'>
         <label htmlFor="confirmPassword">Confirm Password</label>
         <input
           id="confirmPassword"
@@ -91,8 +95,10 @@ const Register = () => {
         />
       </div>
       
-      <button type="submit">Register</button>
+      <button className='submit-btn' type="submit">Register</button>
     </form>
+     </div>
+    </div>
   );
 };
 
