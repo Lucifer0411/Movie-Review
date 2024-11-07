@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { API_URL } from '../config';
 // import { useSelector } from 'react-redux';
 
 
@@ -38,7 +39,7 @@ const submitReview =useCallback(async (e) => {
     // console.log('id',id);
     let postId=id
     const res = await axios.post(
-      `http://localhost:8000/api/reviews/`,
+      `${API_URL}/api/reviews/`,
       { content,rating,postId},
       config
     );
@@ -56,7 +57,7 @@ const submitReview =useCallback(async (e) => {
 useEffect(() => {
   const fetchPost = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/posts/${id}`);
+      const res = await axios.get(`${API_URL}/api/posts/${id}`);
       setPost(res.data);
     } catch (err) {
       console.error('Error fetching post details', err);
@@ -65,7 +66,7 @@ useEffect(() => {
   fetchPost();
   const fetchReviews = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/reviews/${id}/reviews`);
+      const res = await axios.get(`${API_URL}/api/reviews/${id}/reviews`);
       setReviews(res.data);
       return;
     } catch (err) {

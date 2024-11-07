@@ -1,7 +1,6 @@
 // src/components/NewPost.js
 
 import React, { useState } from 'react';
-import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
 const NewPost = () => {
@@ -11,51 +10,24 @@ const NewPost = () => {
     image: '',
     rating: ''
   });
-  // const [img ,setImg]=useState('');
 
-  const { title, description, image, rating } = postData;
+  const { title, description, rating } = postData;
 //   const { token } = useSelector((state) => state.auth); // Get token from Redux store (assuming you're storing it)
-const storedString = localStorage.getItem("user");
-const userData = JSON.parse(storedString);
-const token=userData.token;
-// console.log('token',token);
 
   const navigate = useNavigate();
 
   const onChange = (e) => {
-    if(e.target.name=='image'){
+    if(e.target.name==='image'){
       // console.log(e.target.files[0]);
       setPostData({...postData,[e.target.name]:e.target.files[0]})
       return;
     }
     setPostData({ ...postData, [e.target.name]: e.target.value });
   };
-  const convertToBase64=(e)=>{
-    console.log(e);
-    let reader=new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload=()=>{
-      console.log(reader.result);
-      setPostData({...postData,image:reader.result})
-      
-      // setImg(reader.result)
-    };
-    reader.onerror=error=>{
-      console.log('Error:',error);
-    };
-    
-  }
 
   const onSubmit = async (e) => {
     e.preventDefault();
     
-    const config = {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${token}`,// Pass JWT token in the request header
-      }
-    };
-
     try {
         // console.log('data',postData);
         const formData =new FormData();
@@ -63,7 +35,6 @@ const token=userData.token;
         formData.append('description',postData.description)
         formData.append('image',postData.image)
         formData.append('rating',postData.rating)
-      const res = await axios.post('http://localhost:8000/api/posts', formData, config); // Make API request to create a new post
       navigate('/dashboard'); // Redirect to the dashboard after post creation
     } catch (err) {
       console.error('Error creating post', err);

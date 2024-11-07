@@ -3,6 +3,7 @@
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { API_URL } from '../config';
 
 // Thunk for updating the user profile with password confirmation
 export const updateUser = createAsyncThunk(
@@ -19,7 +20,7 @@ export const updateUser = createAsyncThunk(
         },
       }
       
-      const response = await axios.put(`http://localhost:8000/api/users/${userData.id}`, userData,config);
+      const response = await axios.put(`${API_URL}/api/users/${userData.id}`, userData,config);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);

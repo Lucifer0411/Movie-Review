@@ -7,6 +7,7 @@ import '../assets/style/Home.css'
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { logout, reset } from '../store/authSlice';
+import { API_URL } from '../config';
 
 
 const Home = () => {
@@ -19,7 +20,7 @@ const dispatch=useDispatch();
     useEffect(() => {
       const fetchPosts = async () => {
         try {
-          const res = await axios.get('http://localhost:8000/api/posts');  // Make sure your API route matches the backend route
+          const res = await axios.get(`${API_URL}/api/posts`);  // Make sure your API route matches the backend route
           setPosts(res.data);  // Set posts in state
 
 
@@ -40,6 +41,7 @@ const dispatch=useDispatch();
     <div className="home">
       <header className="home-header">
         <h1>Welcome to the Movie Review App</h1>
+        {/* <h3>{API_URL}</h3> */}
       </header>
 
       {/* Show different content based on authentication state */}
@@ -64,11 +66,11 @@ const dispatch=useDispatch();
         {posts.length > 0 ? (
           posts.map((post) => (
             <div key={post._id} className="post-card">
-              <img src={`http://localhost:8000/api/posts/img/${post.image}`} alt={post.title} className="post-image" />
+              <img src={`${API_URL}/api/posts/img/${post.image}`} alt={post.title} className="post-image" />
               <div className="post-content">
                 <h2>{post.title}</h2>
                 <p>{post.description}</p>
-                {/* <Link to={`http://localhost:8000/api/posts/:${post._id}`} className="btn">Read More</Link> */}
+                
                 {localStorage.getItem('user') && <Link to={`/post/${post._id}`} className="btn">Read More</Link>}
                 
               </div>

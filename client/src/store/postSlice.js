@@ -2,11 +2,11 @@
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { API_URL } from '../config';
 
 // Asynchronous action to fetch posts from the API
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-  const API_URL='http://localhost:8000/api/posts'
-  const response = await axios.get(API_URL);
+  const response = await axios.get(`${API_URL}/api/posts`);
   return response.data; // Array of posts
 });
 

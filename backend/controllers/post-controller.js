@@ -56,7 +56,9 @@ export const getPostImage = asyncHandler(
           res.send({'msg':'image not found'})
         }
         const __dirname = path.resolve();
-        const imagePath=path.join(__dirname,'backend','uploads','images',image.filename)
+        console.log("dir",__dirname);
+        
+        const imagePath=path.join(__dirname,'uploads','images',image.filename)
         // console.log('path',imagePath);
         return res.sendFile(imagePath)
       } catch (error) {

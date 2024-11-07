@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import '../assets/style/PostDetails.css'
+import { API_URL } from '../config';
 
 const PostDetails = () => {
   const { id } = useParams();
@@ -12,7 +13,7 @@ const PostDetails = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await axios.get(`http://localhost:8000/api/posts/${id}`);
+        const res = await axios.get(`${API_URL}/api/posts/${id}`);
         setPost(res.data);
       } catch (err) {
         console.error('Error fetching post details', err);

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { API_URL } from '../config';
 
 function Upload() {
 
@@ -16,7 +17,7 @@ const handleUpload=async()=>{
               'Content-Type': 'multipart/form-data',
             }
         }
-        const res = await axios.post('http://localhost:8000/api/posts/', formData, config);
+        const res = await axios.post(`${API_URL}/api/posts/`, formData, config);
         console.log(res);
         
     }catch(e){
