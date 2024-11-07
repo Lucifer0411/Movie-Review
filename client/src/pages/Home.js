@@ -63,6 +63,7 @@ const dispatch=useDispatch();
       )}
     {/* post handling starts here */}
     <div className="posts-container">
+      {console.log("posts:",posts)}
         {posts.length > 0 ? (
           posts.map((post) => (
             <div key={post._id} className="post-card">
