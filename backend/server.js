@@ -11,11 +11,29 @@ import errorHandler from './middlewares/errorHandlerMiddleware.js';
 connectDB();
 
 const app=express();
-app.use(cors({
-    origin: 'http://localhost:3000', // Allow only your frontend origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true, // Include if you need cookies to be sent
-  }));
+// app.use(cors({
+//     origin: 'http://localhost:3000', // Allow only your frontend origin
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     credentials: true, // Include if you need cookies to be sent
+//   }));
+
+  const corsOpts = {
+    origin: '*',
+  
+    methods: [
+      'GET',
+      'POST',
+      'PUT',
+      'DELETE'
+    ],
+  
+    allowedHeaders: [
+      'Content-Type',
+    ],
+  };
+  
+app.use(cors(corsOpts));
+
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
 
