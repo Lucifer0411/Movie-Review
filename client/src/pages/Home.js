@@ -40,15 +40,15 @@ const dispatch=useDispatch();
   return (
     <div className="home">
       <header className="home-header">
-        <h1>Welcome to the Movie Review App</h1>
-        {/* <h3>{API_URL}</h3> */}
+        <h1>Fir Agye</h1>
+        
       </header>
 
       {/* Show different content based on authentication state */}
       {user ? (
         <div>
-          <h2>Hello, {user?.name}!</h2>
-          <p>Explore new movies, share your thoughts, and see what others are saying.</p>
+          <h2>Hello, {user?.name} jhatu!</h2>
+          <p>Jo karna ha karo, mujhe kya</p>
           <Link to="/dashboard" className="btn">Go to your Dashboard</Link>
           <button onClick={handleLogout}>Logout</button>
         </div>
@@ -63,7 +63,6 @@ const dispatch=useDispatch();
       )}
     {/* post handling starts here */}
     <div className="posts-container">
-      {console.log("posts:",posts)}
         {posts.length > 0 ? (
           posts.map((post) => (
             <div key={post._id} className="post-card">
@@ -71,7 +70,7 @@ const dispatch=useDispatch();
               <div className="post-content">
                 <h2>{post.title}</h2>
                 <p>{post.description}</p>
-                
+                {/* <Link to={`http://localhost:8000/api/posts/:${post._id}`} className="btn">Read More</Link> */}
                 {localStorage.getItem('user') && <Link to={`/post/${post._id}`} className="btn">Read More</Link>}
                 
               </div>
