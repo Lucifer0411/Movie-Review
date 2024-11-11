@@ -1,7 +1,9 @@
 // src/components/NewPost.js
 
+import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { API_URL } from '../config';
 
 const NewPost = () => {
   const [postData, setPostData] = useState({
@@ -35,6 +37,24 @@ const NewPost = () => {
         formData.append('description',postData.description)
         formData.append('image',postData.image)
         formData.append('rating',postData.rating)
+        const storedString = localStorage.getItem("user");
+        const user = JSON.parse(storedString);
+        const token=user.token;
+        if(!token){
+          console.log('token does not authenticated');
+          
+        }
+        const config = {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,// Pass JWT token in the request header
+            // Pass the token for authorization
+          },
+        };
+        const res=await axios.post(`${API_URL}/api/posts/`,formData,config)
+        if(res){
+          console.log("new post added");
+        }
       navigate('/dashboard'); // Redirect to the dashboard after post creation
     } catch (err) {
       console.error('Error creating post', err);
