@@ -11,11 +11,7 @@ import errorHandler from './middlewares/errorHandlerMiddleware.js';
 connectDB();
 
 const app=express();
-// app.use(cors({
-//     origin: 'http://localhost:3000', // Allow only your frontend origin
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//     credentials: true, // Include if you need cookies to be sent
-//   }));
+
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
@@ -27,13 +23,19 @@ app.use(express.urlencoded({extended:false}))
 dotenv.config();
 const port=process.env.PORT
 
-app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+//   res.setHeader('Access-Control-Allow-Credentials', true);
+//   next();
+// });
+
+app.use(cors({
+    origin: '*', // Allow only your frontend origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true, // Include if you need cookies to be sent
+  }));
 
 
 app.use('/api/users',userRouter)
