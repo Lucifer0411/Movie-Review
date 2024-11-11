@@ -5,8 +5,6 @@ import axios from 'axios';
 import { API_URL } from '../config';
 
 
-
-
 // Thunk for registering a user
 export const registerUser = createAsyncThunk(
   'auth/registerUser',
