@@ -16,7 +16,6 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true, // Include if you need cookies to be sent
   }));
-app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
 
