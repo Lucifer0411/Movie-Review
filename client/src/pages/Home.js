@@ -14,7 +14,6 @@ const Home = () => {
   const {user } = useSelector((state) => state.auth);
 const [posts, setPosts] = useState([]);
 const dispatch=useDispatch();
-  // console.log('user',user);
   
     // Fetch posts from backend
     useEffect(() => {
