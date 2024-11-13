@@ -32,18 +32,18 @@ const NewPost = () => {
     
     try {
         // console.log('data',postData);
-        const formData =new FormData();
-        formData.append('title',postData.title)
-        formData.append('description',postData.description)
-        formData.append('image',postData.image)
-        formData.append('rating',postData.rating)
+   
         const storedString = localStorage.getItem("user");
         const user = JSON.parse(storedString);
         const token=user.token;
         if(!token){
           console.log('token does not authenticated');
-          
         }
+        const formData =new FormData();
+        formData.append('title',postData.title)
+        formData.append('description',postData.description)
+        formData.append('image',postData.image)
+        formData.append('rating',postData.rating)
         const config = {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -51,7 +51,14 @@ const NewPost = () => {
             // Pass the token for authorization
           },
         };
+
+        console.log('url',API_URL);
+        console.log('formdata',formData);
+        console.log('config',config);
+        
         const res=await axios.post(`${API_URL}/api/posts`,formData,config)
+        console.log('res',res);
+        
         if(res){
           console.log("new post added");
         }
