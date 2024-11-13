@@ -8,7 +8,8 @@ export const createPost = asyncHandler(
     async (req, res,file) => {
         const { title, description} = req.body;
         const {path,filename} =req.file
-        // console.log(req.file);
+        console.log("req file",req.file);
+        console.log("req body",req.body);
         
         const image=await Image({path,filename})
         await image.save();

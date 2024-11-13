@@ -19,7 +19,7 @@ app.use(express.urlencoded({extended:false}))
 
 
 const __dirname=path.resolve();
-app.use(express.static(path.join(__dirname,'uploads','images')))
+app.use(express.static(path.join(__dirname,'backend','uploads','images')))
 dotenv.config();
 const port=process.env.PORT
 
