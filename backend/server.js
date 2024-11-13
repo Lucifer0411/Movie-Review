@@ -6,7 +6,7 @@ import postRouter from './routes/postRoutes.js';
 import reviewRouter from './routes/reviewRoutes.js';
 import cors from 'cors'
 import errorHandler from './middlewares/errorHandlerMiddleware.js';
-// import path from 'path'
+import path from 'path'
 
 connectDB();
 
@@ -18,8 +18,8 @@ app.use(express.urlencoded({extended:false}))
 
 
 
-// const __dirname=path.resolve();
-// app.use(express.static(path.join(__dirname, 'backend','uploads','images')))
+const __dirname=path.resolve();
+app.use(express.static(path.join(__dirname,'uploads','images')))
 dotenv.config();
 const port=process.env.PORT
 
