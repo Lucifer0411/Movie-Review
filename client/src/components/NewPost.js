@@ -51,7 +51,7 @@ const NewPost = () => {
             // Pass the token for authorization
           },
         };
-        const res=await axios.post(`${API_URL}/api/posts/`,formData,config)
+        const res=await axios.post(`${API_URL}/api/posts`,formData,config)
         if(res){
           console.log("new post added");
         }
@@ -80,7 +80,6 @@ const NewPost = () => {
         <div>
           {/* {console.log(postData.image)} */}
           {/* {postData.image=="" || postData.image==null ? "" : <img src={postData.image} width={100} height={100}/>} */}
-          
         </div>
         <div className="form-group">
           <label>Rating</label>
